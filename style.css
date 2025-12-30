@@ -1,0 +1,1378 @@
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth; /* Para o deslize ser suave */
+  scroll-padding-top: 100px;
+}
+
+
+.main-layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 4vw;
+  /* Aumente aqui para garantir que o container do menu mande na página */
+  z-index: 9999 !important; 
+}
+
+
+:root {
+  --bg-dark: #000000;
+  --text-light: #ffffff;
+  --text-muted: #aaaaaa;
+  --font-impact: 'Anton', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Liquid Glass Estilo Apple/Suave */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  /* Ligeiramente mais claro e transparente */
+  --glass-border: rgba(255, 255, 255, 0.15);
+  /* Borda mais visível */
+  --rounded-corner: 12px;
+  /* Novo: Cantos arredondados para todos os blocos */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* --- BACKGROUND EFEITOS (MANTIDO) --- */
+#star-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVRYbE7cDAgAgDAQBw0DCA0DQgMgQIMGAkIAJgMBQoIEqECAQIQIBgQpEGwgQqIJAoUCQnCAYECQgAGCAmICAgICAgICAgICAgICAgICAg/0H23gJt3b6d2eW9AAAAAElFTkSuQmCC');
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* --- GLASSMORPHISM & GERAIS (AJUSTADO) --- */
+.liquid-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  /* Blur mais forte */
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: var(--rounded-corner);
+  /* Aplica o arredondamento */
+}
+
+/* Onde o border-radius não deve ser aplicado, ajustamos manualmente, ex: nav-arrow é círculo */
+.liquid-glass:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  /* Sombra mais suave */
+}
+
+.full-screen-section {
+  min-height: 100vh;
+  padding: 15vh 8vw 5vh 8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- HEADER, SOCIAL BAR, HERO (MANTIDO) --- */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 4vw;
+  z-index: 100;
+
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo preto com 70% de opacidade */
+  backdrop-filter: blur(10px);         /* Efeito de desfoque no que passa por baixo */
+  -webkit-backdrop-filter: blur(10px); /* Suporte para Safari */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Linha sutil para separar */
+  z-index: 9999 !important;            /* Garante que fique sempre acima de tudo */
+}
+
+.logo-placeholder {
+  font-family: var(--font-impact);
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+}
+
+header nav {
+  display: flex;
+  gap: 2.5rem;
+}
+
+header nav a {
+  text-decoration: none;
+  color: var(--text-light);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  transition: opacity 0.3s;
+}
+
+header nav a:hover {
+  opacity: 0.7;
+}
+
+
+
+
+
+
+
+.social-bar {
+  position: fixed;
+  left: 2.5rem;
+  bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 50;
+}
+
+.social-bar a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.social-bar a:hover {
+  transform: translateY(-3px);
+  opacity: 0.7;
+}
+
+.scroll-indicator-right {
+  position: fixed;
+  right: 2rem;
+  bottom: 0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: var(--text-light);
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
+  opacity: 0.3;
+  z-index: 50;
+}
+
+#hero {
+  flex-direction: column;
+}
+
+.hero-content {
+  text-align: center;
+}
+
+.role-i-am {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.main-title {
+  font-family: var(--font-impact);
+  font-size: clamp(6rem, 18vw, 12rem);
+  line-height: 0.9;
+  letter-spacing: 0.05em;
+}
+
+.thin {
+  font-weight: 400;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.role-designer {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  letter-spacing: 0.3em;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+/* --- PROJECTS SECTION (SCROLL HORIZONTAL) --- */
+.projects-section-horizontal {
+  min-height: 100vh;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+}
+
+.section-title-horizontal {
+  font-family: var(--font-impact);
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+  padding: 0 4vw;
+  margin-bottom: 3rem;
+}
+
+.project-track-wrapper {
+  overflow-x: hidden;
+  width: 100vw;
+  padding: 0 4vw;
+}
+
+.project-track {
+  display: flex;
+  gap: 3vw;
+  will-change: transform;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.project-track::-webkit-scrollbar {
+  display: none;
+}
+
+
+.project-card {
+  display: block;
+  text-decoration: none;
+  color: var(--text-light);
+  min-width: 450px;
+  max-width: 450px;
+  background: none;
+  /* A borda será aplicada via .liquid-glass, mas removeremos o radius aqui para usar a variável */
+  border: 1px solid transparent;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  padding: 1rem;
+  position: relative;
+}
+
+.card-image {
+  width: 100%;
+  height: 350px;
+  background-color: #111;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s ease-out;
+  overflow: hidden;
+  border-radius: var(--rounded-corner);
+  /* Aplica o arredondamento na imagem */
+}
+
+/* Aplicação do zoom na imagem quando o mouse está no card */
+.project-card:hover .card-image {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Placeholder Images (MANTIDO) */
+.img-1 {
+  background-image: url('./Captura\ de\ tela\ de\ 2025-12-14\ 15-57-15.png');
+}
+
+.img-2 {
+  background-image: url('placeholder-2.jpg');
+}
+
+.img-3 {
+  background-image: url('placeholder-3.jpg');
+}
+
+.img-4 {
+  background-image: url('placeholder-4.jpg');
+}
+
+.card-info {
+  margin-top: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.card-title {
+  font-family: var(--font-impact);
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+}
+
+.card-description {
+  color: var(--text-muted);
+  font-weight: 300;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* --- SETAS DE NAVEGAÇÃO (Desktop Only) --- */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(calc(-50% + 30px));
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  /* Mantém círculo */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.left-arrow {
+  left: 20px;
+}
+
+.right-arrow {
+  right: 20px;
+}
+
+/* --- CONTACT SECTION (AJUSTADO: Adiciona Liquid Glass no form block) --- */
+.contact-section {
+  padding: 10vh 4vw;
+}
+
+.contact-grid {
+  display: flex;             /* Mudamos de grid para flex */
+  flex-direction: column;    /* Empilha os elementos */
+  align-items: center;       /* Centraliza horizontalmente */
+  justify-content: center;   /* Centraliza verticalmente */
+  text-align: center;        /* Centraliza o texto */
+  width: 100%;
+  max-width: 800px;          /* Limita a largura para o texto não ficar muito espalhado */
+  margin: 0 auto;            /* Centraliza o container na página */
+}
+
+.contact-title {
+  font-family: var(--font-impact);
+  font-size: 4rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+}
+
+.contact-description {
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 400px;
+  line-height: 1.6;
+  margin-bottom: 4rem;
+}
+
+.contact-details h3 {
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.contact-details p {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+/* O bloco do formulário já tem a classe 'liquid-glass' no HTML */
+.contact-form-block {
+  /* Removemos o padding e box-shadow que estavam aqui, pois o liquid-glass já aplica o estilo */
+  padding: 3rem 4rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  border-radius: var(--rounded-corner);
+  /* Garante que os cantos arredondados sejam aplicados */
+}
+
+.contact-sub {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 6rem);
+  letter-spacing: 0rem;
+  margin-bottom: 1rem;
+  position: relative;
+  margin-top: -40px;
+  z-index: 1;
+  text-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+
+.form-title {
+  font-size: 3rem;
+}
+
+.glass-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Os inputs não são arredondados para manter o estilo minimalista de linha, mas podem ser ajustados se necessário */
+.form-input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--text-muted);
+  color: var(--text-light);
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  transition: border-bottom-color 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-bottom-color: var(--text-light);
+}
+
+textarea.form-input {
+  resize: none;
+  height: 80px;
+}
+
+/* Botão de submit: Arredondamos os cantos */
+.submit-btn {
+  background: var(--text-light);
+  color: var(--bg-dark);
+  padding: 0.8rem 2rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  margin-top: 1rem;
+  transition: background 0.3s;
+  border-radius: var(--rounded-corner);
+  /* Aplica o arredondamento */
+}
+
+.submit-btn:hover {
+  background: #aaa;
+}
+
+
+/* --- RESPONSIVIDADE (MANTIDO) --- */
+@media (max-width: 901px) {
+
+  /* Mobile: Scroll é nativo do toque, setas escondidas */
+  .nav-arrow {
+    display: none;
+  }
+
+  /* Mobile: Permite scroll nativo do dedo no track */
+  .project-track-wrapper {
+    overflow-x: auto;
+  }
+
+  .project-card {
+    min-width: 80vw;
+  }
+
+  /* Outras seções responsivas */
+  .full-screen-section {
+    padding: 10vh 5vw 5vh 5vw;
+  }
+
+  header {
+    padding: 1.5rem 5vw;
+  }
+
+  .social-bar,
+  .scroll-indicator-right {
+    display: none;
+  }
+
+  .role-designer {
+    font-size: 1rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center; /* Centraliza todos os textos */
+    justify-items: center; /* Centraliza os blocos (incluindo o formulário) */
+  }
+
+  /* Garante que a descrição não fique esticada e mantenha o centro */
+  .contact-description {
+    margin: 0 auto 3rem auto; 
+    text-align: center;
+  }
+
+  /* Ajusta o título do formulário para o centro */
+  .contact-form-block {
+    padding: 2.5rem 1.5rem;
+    width: 100%;
+    max-width: 450px; /* Mantém uma largura elegante no mobile */
+  }
+
+  .form-title {
+    text-align: center;
+    font-size: 2.2rem; /* Ajuste leve para caber melhor em telas pequenas */
+  }
+
+  /* Centraliza as linhas dos inputs */
+  .glass-form {
+    align-items: center;
+  }
+
+  .form-input {
+    width: 100%;
+    text-align: center; /* Opcional: centraliza o placeholder e o texto digitado */
+  }
+}
+
+
+
+/* ===== PROJECTS SHOWCASE ===== */
+
+.projects-showcase {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.portfolio-title {
+  font-family: var(--font-impact);
+  font-size: clamp(3rem, 4vw, 6rem);
+  letter-spacing: 0rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+
+  
+}
+
+.portfolio-sub {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(1rem, 1vw, 6rem);
+  letter-spacing: 0rem;
+  margin-bottom: 1rem;
+  position: relative;
+  margin-top: -15px;
+  z-index: 1;
+  text-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+
+.projects-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden; 
+  /* Adicione estas linhas abaixo */
+  padding-left: 5vw;  /* Cria o recuo na esquerda */
+  padding-right: 5vw; /* Cria o recuo na direita */
+  box-sizing: border-box; /* Garante que o padding não quebre a largura total */
+}
+
+.projects-track {
+  display: flex;
+  gap: 4rem; /* Distância entre os projetos */
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.project-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-image {
+  width: 320px;
+  height: 320px;
+  border-radius: 16px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  position: relative;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* NÃO CORTA */
+  transition: transform 0.6s ease;
+}
+
+.project-image:hover img {
+  transform: scale(1.15) translateY(-40px);
+}
+
+
+.project-notion {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+
+.project-notion:hover {
+  color: var(--text-light);
+}
+
+/* Placeholder images */
+.img-1 {
+  background-image: url('./Captura\ de\ tela\ de\ 2025-12-14\ 15-57-15.png');
+}
+
+.img-2 {
+  background-image: url('./thee.png');
+}
+
+.img-3 {
+  background-image: url('placeholder-3.jpg');
+}
+
+.arrow {
+  /* 1. Criar o círculo perfeito */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  
+  /* 2. Centralização Absoluta */
+  display: flex;
+  align-items: center;      /* Centraliza verticalmente */
+  justify-content: center;   /* Centraliza horizontalmente */
+  
+  /* 3. Reset de Texto (Crucial) */
+  padding: 0;               /* Remove o padding que você tinha de 1rem */
+  line-height: 1;           /* Remove o espaço extra de linha de texto */
+  
+  /* 4. Estilo Visual */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 2.5rem;        /* Tamanho da seta */
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+/* 5. Ajuste Fino (Opcional) */
+/* Às vezes, visualmente a seta parece um pouco "caída" ou "torta" 
+   mesmo estando centralizada matematicamente. Se precisar, use estes: */
+
+.arrow.left {
+  left: 20px;
+  padding-right: 3px; /* Empurra levemente a seta < para o centro visual */
+  padding-bottom: 5px;
+}
+
+.arrow.right {
+  right: 20px;
+  padding-left: 3px;  /* Empurra levemente a seta > para o centro visual */
+  padding-bottom: 5px;
+
+}
+
+.arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+
+  .projects-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow: hidden; 
+    /* Adicione estas linhas abaixo */
+    padding-left: 5vw;  /* Cria o recuo na esquerda */
+    padding-right: 5vw; /* Cria o recuo na direita */
+    box-sizing: border-box; /* Garante que o padding não quebre a largura total */
+  }
+
+  .projects-track {
+    gap: 2rem;
+  }
+
+  .project-image {
+    width: 240px;
+    height: 240px;
+  }
+
+  .arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    /* No mobile, as setas aparecem mas são menores */
+    display: flex; 
+  }
+
+  .arrow.left {
+    left: 20px;
+    padding-right: 3px; /* Empurra levemente a seta < para o centro visual */
+    padding-bottom: 5px;
+  }
+  
+  .arrow.right {
+    right: 20px;
+    padding-left: 3px;  /* Empurra levemente a seta > para o centro visual */
+    padding-bottom: 5px;
+  
+  }
+  
+  .arrow:hover {
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 1;
+  }
+}
+
+
+
+.project-title {
+  margin-top: 1.2rem;
+  font-family: var(--font-impact);
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+
+
+/* ===== ABOUT SECTION ===== */
+
+
+.about-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10vh 5vw;
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+  /* Mudado de 'end' para 'center' */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 450px;
+  justify-self: center;
+
+  /* FAZ A FOTO SUBIR */
+  align-self: flex-start;
+  margin-top: -55vh;
+  /* Ajuste este valor se quiser que ela suba mais ou menos */
+
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background: transparent;
+}
+
+/* Para o texto descer, aplique o alinhamento no bloco que o envolve */
+/* Se você não tiver uma div em volta dos textos, adicione no HTML ou use o seletor abaixo */
+.about-label {
+  align-self: flex-end;
+  /* Faz o início do texto alinhar por baixo */
+  margin-top: 15vh;
+  /* Empurra o texto para baixo, longe do topo da imagem */
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: #777;
+}
+
+.about-title {
+  font-family: var(--font-impact);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  margin: 1rem 0 2rem;
+  line-height: 1.2;
+}
+
+.highlight {
+  color: rgba(180, 160, 160, 0.55);
+}
+
+.about-text {
+  max-width: 420px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.signature-svg {
+  width: 220px;
+  margin-top: 2rem;
+}
+
+/* ... animação da assinatura permanece igual ... */
+
+.about-socials {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* ===== AJUSTE RESPONSIVO MOBILE ===== */
+@media (max-width: 900px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    align-items: center;
+    /* No mobile volta a alinhar ao centro */
+  }
+
+  .about-image {
+    max-width: 300px;
+    /* Tamanho para celular */
+    transform: none;
+  }
+
+  .about-label {
+    margin-top: 2rem;
+  }
+
+  .about-socials {
+    justify-content: center;
+  }
+}
+
+/* ===== TECHNOLOGIES MARQUEE ===== */
+
+.tech-marquee {
+  /* Reduzi a margem de 6rem para algo entre 1rem e 3rem */
+  margin-top: 20px; /* distancia das linhas para o about */
+  overflow: hidden;
+  margin-top: 2px !important; 
+  margin-bottom: 2px !important;
+
+  /* Mantendo o efeito de transparência nas bordas que sugeri antes */
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.tech-track {
+  display: flex;
+  gap: clamp(2rem, 6vw, 4rem);
+  padding: 1.5rem 0;
+  /* Garante que a animação seja infinita e linear (sem paradas) */
+  animation: marquee 25s linear infinite;
+  width: max-content;
+}
+
+.tech-track span {
+  font-family: var(--font-impact);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  letter-spacing: 0.2em;
+  color: rgba(180, 160, 160, 0.55);
+}
+
+/* Botão de Download */
+.download-cv-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 12px 30px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  color: var(--text-light);
+  text-decoration: none;
+  font-family: var(--font-impact);
+  letter-spacing: 0.15em;
+  font-size: 0.9rem;
+  border-radius: var(--rounded-corner);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.download-cv-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Ajuste específico para o Mobile */
+@media (max-width: 900px) {
+  .download-cv-btn {
+      display: block; /* Ocupa a largura necessária para centralizar */
+      width: fit-content;
+      margin: 2rem auto 0 auto; /* Centraliza horizontalmente no mobile */
+  }
+}
+
+/* animação indo e voltando */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    /* O valor deve ser NEGATIVO e exatamente 50% */
+    transform: translateX(-50%);
+  }
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 900px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-text {
+    max-width: 100%;
+  }
+
+  .about-socials {
+    justify-content: center;
+  }
+
+  .about-image {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .tech-marquee {
+    /* Reduz o espaço acima e usa margem inferior negativa para colar no título abaixo */
+    margin-top: 10px !important;
+    margin-bottom: 60px !important; 
+    padding: 10px 0 !important;
+  }
+
+  /* Garante que o título "Meus Projetos" não tenha espaço extra no topo */
+  .projects-showcase {
+    padding-top: 0 !important;
+    min-height: auto !important;
+  }
+  
+  .portfolio-title {
+    margin-top: 0 !important;
+  }
+
+}
+
+
+
+
+
+.about-signature {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.signature-image {
+  width: 220px;
+  opacity: 0.7;
+  filter: brightness(0.9) contrast(1.1);
+}
+
+
+
+.about-social {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.social-icon-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* hover elegante */
+.social-icon-img:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+
+
+
+
+
+
+
+
+/* 1. Container Principal */
+.lang-selector {
+  position: absolute;
+  top: 0.8rem;
+  right: 4vw;
+  z-index: 300;
+  display: flex;
+  flex-direction: row-reverse; /* Bandeira atual na direita, lista na esquerda */
+  align-items: center;
+}
+
+/* 2. Botão Atual (O círculo da direita) */
+.lang-current {
+  padding-right: 9px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  width: 38px;  /* Aumentei o tamanho */
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  z-index: 10; /* Fica acima da lista para esconder a emenda */
+}
+
+.lang-current img {
+  width: 24px; /* Ícone maior */
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* 3. A Lista (O corpo da pílula que desliza) */
+.lang-list {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  
+  height: 40px; /* Mesma altura do botão atual */
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  white-space: nowrap;
+  margin-bottom: -2px;
+
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(14px);
+  border: none;
+  
+  /* REMOVENDO A BORDA DIREITA E O ARREDONDAMENTO DIREITO */
+  border-right: none; 
+  border-radius: 999px 0 0 999px; /* Arredonda só o lado esquerdo */
+  
+  /* Encaixe perfeito: puxa a lista para "dentro" do botão atual */
+  margin-right: -19px; 
+  padding: 0;
+  
+  transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              opacity 0.3s ease, 
+              padding 0.4s ease;
+}
+
+/* 4. Quando aberto */
+.lang-selector.open .lang-list {
+  width: 100px; /* Ajuste conforme o tamanho dos novos ícones */
+  opacity: 1;
+  padding: 0 25px 0 15px; /* Padding extra na direita para não colar no botão */
+}
+
+/* 5. Ícones dentro da lista */
+.lang-list img {
+  width: 24px; /* Mesma medida da bandeira principal */
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+
+.lang-list button:hover img {
+  transform: scale(1.2); /* Efeito de destaque ao passar o mouse */
+}
+
+.lang-list button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+
+
+
+
+@media (max-width: 901px) {
+  /* Altere o tamanho da fonte do nome principal */
+  h1.karen-title { 
+    font-size: 3rem; 
+  }
+
+  /* Ajuste o menu ou o seletor de idiomas para mobile */
+  .lang-selector {
+    right: 2vw; /* Traz mais para o canto em telas pequenas */
+    top: 0.5rem;
+  }
+
+  /* Exemplo: empilhar elementos que antes estavam lado a lado */
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
+/* No Desktop, o botão de 3 linhas não existe */
+.mobile-menu-btn {
+  display: none;
+}
+
+/* Container para agrupar idioma e menu na direita */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  /* 1. Esconde o menu horizontal padrão */
+  header nav:not(.nav-menu) { 
+    display: none; 
+  }
+
+  /* 2. Estiliza o novo menu lateral (escondido à direita) */
+  .nav-menu {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: -100%; /* Totalmente fora da tela */
+    width: 70%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.010);
+    backdrop-filter: blur(15px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 9999 !important;
+  }
+
+  /* 3. Classe que o JavaScript vai ativar */
+  .nav-menu.active {
+    right: 0; /* Desliza para dentro da tela */
+    background: rgba(0, 0, 0, 0.95); /* Deixa o fundo mais sólido */
+    backdrop-filter: blur(15px); /* Aumenta o desfoque do que está atrás */
+  }
+
+  /* 4. Mostra e posiciona as 3 linhas na direita */
+  .mobile-menu-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10000 !important;
+  }
+
+  .mobile-menu-btn span {
+    width: 25px;
+    height: 2px;
+    background-color: white;
+    transition: 0.3s;
+  }
+  
+  /* Animação do X quando aberto */
+  .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+  .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+  .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+}
+
+
+
+
+/* Isso garante que a fileira de ícones sempre tente se centralizar */
+.social-links-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;
+}
+
+/* Padroniza o tamanho para que todos os novos fiquem iguais aos antigos */
+.social-icon-img {
+  width: 28px; 
+  height: 28px;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: all 0.3s ease;
+}
+
+.social-icon-img:hover {
+  opacity: 1;
+  transform: translateY(-3px); /* Efeito de levante igual ao do About */
+}
+
+
+@media (max-width: 901px) {
+  /* Impede que a seção force 100% da altura da tela se o conteúdo for pequeno */
+  .full-screen-section {
+    min-height: auto !important; 
+    padding: 80px 5vw 40px 5vw !important; /* Reduz o topo e a base */
+  }
+
+  /* Ajusta o Hero para não ficar com tanto espaço vazio */
+  #hero {
+    padding-top: 350px !important; /* distancia do karen ate em cima */
+    padding-bottom: 40px !important;
+  }
+
+  .main-title {
+    font-size: 4.5rem !important; /* Diminui o "KAREN" para caber melhor */
+    margin-bottom: 10px;
+  }
+
+  /* --- SEÇÃO SOBRE (ABOUT) --- */
+  .about-section {
+    padding-top: 100px !important; /*distancia do about  e o karen */
+    
+  }
+
+  .about-image {
+    margin-top: 0 !important; /* Remove o -55vh que estava empurrando tudo */
+    max-width: 220px !important;
+    margin-bottom: 20px; /* distancia da foto e do texto */
+  }
+
+  .about-label {
+    margin-top: 0 !important; /* Remove o 15vh que estava jogando o texto para baixo */
+    align-self: center;
+  }
+
+  .about-text {
+    margin-bottom: 1.5rem;
+  }
+
+ 
+  
+  /* --- SEÇÃO CONTATO --- */
+  .contact-section {
+    padding-top: 60px !important;
+  }
+
+  .contact-grid {
+    gap: 1.5rem !important; /* Diminui o buraco entre título e info */
+  }
+
+  .contact-title {
+    font-size: 2.8rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .contact-description {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .contact-section {
+    /* Em vez de auto, use um valor que preencha melhor a tela */
+    min-height: 100vh !important; 
+    /* Padding superior para afastar dos projetos e inferior para o rodapé */
+    padding: 100px 5vw 80px 5vw !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.main-footer {
+  width: 100%;
+  padding: 2rem 4vw;
+  background-color: rgba(0, 0, 0, 0.7); /* Mesma opacidade do header */
+  backdrop-filter: blur(10px);         /* Mesmo efeito de desfoque */
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Linha sutil igual ao header */
+  margin-top: 50px;
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--text-light);
+  transition: opacity 0.3s;
+  letter-spacing: 0.1em;
+}
+
+.footer-links a:hover {
+  opacity: 0.7;
+}
+
+/* Ajuste para Mobile */
+@media (max-width: 900px) {
+  .footer-content {
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+  }
+}

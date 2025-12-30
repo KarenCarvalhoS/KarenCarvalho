@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAREN | Portfolio Minimalista</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="star-canvas"></canvas>
+    <div class="grain-overlay"></div> 
+    
+    <div class="main-layout">
+        
+      <header>
+      
+        <a href="#" class="logo-placeholder" style="text-decoration: none; color: inherit;">KC</a>
+
+  <div class="header-right">
+    <button class="mobile-menu-btn" aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+      
+        <nav class="nav-menu">
+          <div class="lang-selector">
+            <button class="lang-current" data-lang="pt" aria-label="Idioma atual">
+              <img src="./eau de perfum (2)/por.svg" alt="Português">
+            </button>
+            <div class="lang-list">
+              <button data-lang="pt"><img src="./eau de perfum (2)/por.svg" alt="Português"></button>
+              <button data-lang="en"><img src="./eau de perfum (2)/eua.svg" alt="English"></button>
+              <button data-lang="es"><img src="./eau de perfum (2)/esp.svg" alt="Español"></button>
+            </div>
+          </div>
+      
+          <a href="#about" data-i18n="about">QUEM SOU ?</a>
+          <a href="#projects" data-i18n="projects">PROJETOS</a>
+          <a href="#contact" data-i18n="contact">CONTATO</a>
+        </nav>
+      </header>
+      
+
+
+      
+        <section id="hero" class="full-screen-section">
+            <div class="hero-content">
+            
+                <h1 class="main-title">
+                    <span class="thin">KAREN</span>
+                </h1>
+                <p class="role-designer" data-i18n="role">FRONT-END | UX UI DESIGNER</p>
+            </div>
+        </section>
+
+
+
+
+<section id="about" class="about-section">
+  <div class="about-container">
+
+    <!-- IMAGEM -->
+    <div class="about-image-wrapper">
+      <img
+        src="./eau de perfum (6).png"
+        alt="Foto sobre mim"
+        class="about-image"
+      />
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="about-content">
+      <span class="about-label" data-i18n="about_label">ABOUT PERSONAL</span>
+
+      <h2 class="about-title" data-i18n="about_title">
+        Olá, eu sou <span class="highlight">Karen</span><br />
+        Front-end Developer
+      </h2>
+      
+
+      <p class="about-text" data-i18n="about_text">
+        Atuando em projetos no <span class="highlight">Brasil</span> e na 
+        <span class="highlight">Argentina</span> com foco na criação de sites institucionais claros, 
+        performáticos e orientados a resultados, utilizando <em><b>HTML, CSS e JavaScript.</b></em> 
+        Desenvolvimento recente do site de 
+        <em><span class="highlight">Ricardo Zanardo (participante do programa Casamento às Cegas, Netflix)</span></em> 
+        e de um projeto internacional para um tradicional <em>bodegón</em> em <b>Buenos Aires</b>, 
+        a partir de análise crítica da experiência existente e proposta de simplificação. 
+        Atualmente, atuo como <span class="highlight">Tech Lead</span> em um time de desenvolvimento web 
+        <em>voluntário</em>, conduzindo entregas técnicas, apoiando o time e garantindo qualidade, 
+        organização e alinhamento com os objetivos do projeto.
+      </p>
+      
+      
+      <!-- ASSINATURA -->
+      <div class="about-signature">
+        <img
+          src="./eee.png"
+          alt="Assinatura"
+          class="signature-image"
+        />
+      </div>
+
+      <br>
+      <a
+  href="./cv2026.pdf"
+  download="Curriculo_Karen_Carvalho"
+  class="download-cv-btn"
+  data-i18n="download_cv"
+>
+  Download CV
+</a>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TECNOLOGIAS -->
+   <section>
+  <div class="tech-marquee">
+    <div class="tech-track">
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JAVASCRIPT</span>
+      <span>REACT</span>
+      <span>GITHUB</span>
+      <span>FIGMA</span>
+
+      <!-- duplicado para loop -->
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JAVASCRIPT</span>
+      <span>REACT</span>
+      <span>GITHUB</span>
+      <span>FIGMA</span>
+
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JAVASCRIPT</span>
+      <span>REACT</span>
+      <span>GITHUB</span>
+      <span>FIGMA</span>
+
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JAVASCRIPT</span>
+      <span>REACT</span>
+      <span>GITHUB</span>
+      <span>FIGMA</span>
+    </div>
+  </div>
+</section>
+
+        <section id="projects" class="projects-showcase">
+          <h2 class="portfolio-title" data-i18n="portfolio_title">Meus Projetos</h2>
+          <h3 class="portfolio-sub" data-i18n="portfolio_sub">Navegue pelos <span class="highlight"><em>universos digitais</em></span> que ajudei a <em>construir.</em> </h3>
+        
+          <div class="projects-wrapper">
+            <button class="arrow left nav-arrow" id="prevProject" aria-label="Projeto Anterior">‹</button>
+        
+            <div class="projects-track" id="projectsTrack">
+        
+              <div class="project-item">
+                <a href="https://ricardozanardo.com.br" target="_blank" class="project-image">
+                  <img src="./rz.png" alt="Projeto 1">
+                </a>
+                <h3 class="project-title">Ricardo Zanardo Fragrâncias</h3>
+                <a href="https://www.notion.so/Ricardo-Zanardo-Perfumes-2d957c824b5b8095ba2ec10d82eddda3?source=copy_link" target="_blank" class="project-notion">
+                  <p class="detalhes-proj" data-i18n="detalhes_proj">View project details</p>
+                </a>
+              </div>
+        
+              <div class="project-item">
+                <a href="https://theblackvision.com.br" target="_blank" class="project-image">
+                  <img src="./bv.png" alt="Projeto 2">
+                </a>
+                <h3 class="project-title">The Black Vision</h3>
+                <a href="https://www.notion.so/The-Black-Vision-2d857c824b5b8004903ad8fdea12e409?source=copy_link" target="_blank" class="project-notion">
+                  <p class="detalhes-proj" data-i18n="detalhes_proj">View project details</p>
+                </a>
+              </div>
+        
+              <div class="project-item">
+                <a href="https://karencarvalhos.github.io/DevClubStore/" target="_blank" class="project-image">
+                  <img src="./dev.png" alt="Projeto 3">
+                </a>
+                <h3 class="project-title">DevClub Store</h3>
+                <a href="" target="_blank" class="project-notion">
+                
+                </a>
+              </div>
+        
+            </div>
+        
+            <button class="arrow right nav-arrow" id="nextProject" aria-label="Próximo Projeto">›</button>
+          </div>
+        </section>
+        
+        
+
+        <section id="contact" class="full-screen-section contact-section">
+            <div class="contact-grid">
+                
+                <div class="contact-info-block">
+                    <h2 class="contact-title" data-i18n="contact_title">CONTACT</h2>
+                    <p class="contact-description" data-i18n="contact_description">
+                      Desenvolvo sites <em><b>claros, organizados e fáceis de usar.</b> </em>   
+                      Meu foco é criar experiências que geram <span class="highlight">confiança</span> e <span class="highlight">ajudam seu negócio</span> a alcançar <em>RESULTADOS.</em>
+                    </p>
+                    <div class="contact-details">
+                      <h3 data-i18n="email_label">E-MAIL</h3>
+
+                      <p>
+                          
+                              karencarvalho.web@gmail.com
+                          
+                      </p>
+                  </div>
+                  
+                
+                    <div class="social-links-row">
+                      <a href="https://www.behance.net/karencarvalhouxui" target="_blank">
+                          <img src="./behance.png" alt="Behance" class="social-icon-img">
+                      </a>
+                  
+                      <a href="https://www.instagram.com/karencarvalho.web/" target="_blank">
+                          <img src="./instagram.png" alt="Instagram" class="social-icon-img">
+                      </a>
+                  
+                      <a href="https://www.linkedin.com/in/karensilvacarvalho/" target="_blank">
+                          <img src="./linkedin.png" alt="LinkedIn" class="social-icon-img">
+                      </a>
+                  
+                      <a href="https://github.com/KarenCarvalhoS" target="_blank">
+                          <img src="./github.png" alt="GitHub" class="social-icon-img">
+                      </a>
+                  
+                      <a href="https://wa.me/5511942904408" target="_blank">
+                          <img src="./whatsapp.png" alt="WhatsApp" class="social-icon-img">
+                      </a>
+                  </div>
+        </section>
+
+    </div>
+
+    <footer class="main-footer">
+      <div class="footer-content">
+          <span class="logo-placeholder">KC</span>
+          <p data-i18n="footer_copy">© 2026 Karen Carvalho. Todos os direitos reservados.</p>
+          <div class="footer-links">
+            <a href="#hero" data-i18n="footer_home">Início</a>
+            <a href="#about" data-i18n="footer_about">Quem Sou</a>          
+          </div>
+      </div>
+  </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
