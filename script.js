@@ -24,6 +24,7 @@ const translations = {
     portfolio_title: "Meus Projetos",
     portfolio_sub: "Navegue pelos <span class='highlight'><em>universos digitais</em></span> que ajudei a <em>construir.</em>",
     detalhes_proj: "Ver detalhes do projeto",
+    detalhes_projt: "Projeto em Andamento ...",
 
     contact_title: "CONTATO",
     contact_description: `
@@ -64,6 +65,7 @@ const translations = {
     portfolio_title: "My Projects",
     portfolio_sub: "Explore the <span class='highlight'><em>digital universes</em></span> I helped <em>build.</em>",
     detalhes_proj: "View project details",
+    detalhes_projt: "Project in Progress ...",
 
     contact_title: "CONTACT",
     contact_description: `
@@ -105,6 +107,7 @@ const translations = {
     portfolio_title: "Mis Proyectos",
     portfolio_sub: "Explora los <span class='highlight'><em>universos digitales</em></span> que ayudé a <em>construir.</em>",
     detalhes_proj: "Ver detalles del proyecto",
+    detalhes_projt: "Proyecto en marcha...",
 
     contact_title: "CONTACTO",
     contact_description: `
