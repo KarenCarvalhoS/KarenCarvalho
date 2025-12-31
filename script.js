@@ -398,3 +398,93 @@ document.addEventListener('click', (event) => {
         navMenu.classList.remove('active');
     }
 });
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('projectsTrack');
+  const nextBtn = document.getElementById('nextProject');
+  const prevBtn = document.getElementById('prevProject');
+  const items = document.querySelectorAll('.project-item');
+  
+  if (!track || !nextBtn || !prevBtn || items.length === 0) return;
+
+  let currentIndex = 0;
+  const totalItems = items.length;
+
+  function updateSlider() {
+      const gap = 20; // Espaçamento entre os cards
+      const itemWidth = items[0].offsetWidth + gap;
+      
+      // Move o track apenas até o limite
+      track.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+
+      // --- LÓGICA DE BLOQUEIO VISUAL ---
+      // Desativa a seta esquerda se estiver no primeiro projeto
+      if (currentIndex === 0) {
+          prevBtn.style.opacity = "0.3";
+          prevBtn.style.pointerEvents = "none";
+      } else {
+          prevBtn.style.opacity = "1";
+          prevBtn.style.pointerEvents = "auto";
+      }
+
+      // Desativa a seta direita se estiver no último projeto
+      if (currentIndex === totalItems - 1) {
+          nextBtn.style.opacity = "0.3";
+          nextBtn.style.pointerEvents = "none";
+      } else {
+          nextBtn.style.opacity = "1";
+          nextBtn.style.pointerEvents = "auto";
+      }
+  }
+
+  // Botão Próximo: Só avança se NÃO for o último
+  nextBtn.addEventListener('click', () => {
+      if (currentIndex < totalItems - 1) {
+          currentIndex++;
+          updateSlider();
+      }
+  });
+
+  // Botão Anterior: Só volta se NÃO for o primeiro
+  prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+          currentIndex--;
+          updateSlider();
+      }
+  });
+
+  // --- SWIPE MOBILE ---
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  track.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  track.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      const swipeThreshold = 50;
+      
+      // Se deslizou para a esquerda e não é o último, avança
+      if (touchStartX - touchEndX > swipeThreshold) {
+          if (currentIndex < totalItems - 1) {
+              currentIndex++;
+              updateSlider();
+          }
+      }
+      // Se deslizou para a direita e não é o primeiro, volta
+      if (touchEndX - touchStartX > swipeThreshold) {
+          if (currentIndex > 0) {
+              currentIndex--;
+              updateSlider();
+          }
+      }
+  }, { passive: true });
+
+  // Inicializa o estado dos botões
+  updateSlider();
+  window.addEventListener('resize', updateSlider);
+});

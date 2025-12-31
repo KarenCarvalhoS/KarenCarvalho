@@ -817,7 +817,7 @@ textarea.form-input {
 
   /* FAZ A FOTO SUBIR */
   align-self: flex-start;
-  margin-top: -55vh;
+  margin-top: -25vh;
   /* Ajuste este valor se quiser que ela suba mais ou menos */
 
   aspect-ratio: 3 / 4;
@@ -881,6 +881,7 @@ textarea.form-input {
     max-width: 300px;
     /* Tamanho para celular */
     transform: none;
+    
   }
 
   .about-label {
@@ -1383,3 +1384,41 @@ textarea.form-input {
   font-style: italic;
   color: #777;
 }
+
+
+.projects-wrapper {
+  overflow: hidden; /* Garante que os projetos fora da área sumam */
+  width: 100%;
+  position: relative;
+}
+
+.projects-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.4s ease-out; /* Suaviza o movimento */
+  will-change: transform;
+  touch-action: pan-y; /* Permite scroll vertical, mas o horizontal é nosso */
+}
+
+.project-item {
+  flex: 0 0 300px; /* Largura fixa de cada projeto no mobile */
+  user-select: none;
+}
+
+.project-item img {
+  pointer-events: none; /* Impede que o navegador tente arrastar a imagem */
+  -webkit-user-drag: none;
+}
+
+/* Estilo para a seta desativada */
+.nav-arrow.disabled {
+  opacity: 0.2;            /* Fica bem clarinha */
+  cursor: not-allowed;     /* Muda o ícone do mouse */
+  pointer-events: none;    /* Impede cliques */
+}
+
+.projects-track {
+  display: flex;
+  transition: transform 0.4s ease-out; /* Isso faz o "deslize" ser suave */
+}
+
